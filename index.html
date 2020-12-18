@@ -17,62 +17,68 @@
   </head>
   <body>
 
-    <header>
-      <div class="title">
-        <a href="#"><h1>BOOLFLIX</h1></a>
-      </div>
+    <div id="app">
 
-      <div class="nav">
-        <ul id="nav_list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Serie TV</a></li>
-          <li class="active"><a href="#">Film</a></li>
-          <li><a href="#">Nuovi e popolari</a></li>
-          <li><a href="#">La mia lista</a></li>
-        </ul>
-      </div>
+      <header>
+        <div class="title">
+          <a href="#"><h1>BOOLFLIX</h1></a>
+        </div>
 
-      <div class="search_form">
-        <input type="text" name="" value="" placeholder="Ricerca per titolo">
-        <button type="button" name="button">
-          <i class="fas fa-search"></i>
-        </button>
-        <img src="img/my_avatar.jpg" alt="my avatar">
-      </div>
-    </header>
+        <div class="nav">
+          <ul id="nav_list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Serie TV</a></li>
+            <li class="active"><a href="#">Film</a></li>
+            <li><a href="#">Nuovi e popolari</a></li>
+            <li><a href="#">La mia lista</a></li>
+          </ul>
+        </div>
 
-    <main>
-      <div id="films">
+        <div class="search_form">
+          <input type="text" name="" value="" placeholder="Ricerca per titolo">
+          <button type="button" name="button" @click="searchFilms()">
+            <i class="fas fa-search"></i>
+          </button>
+          <img src="img/my_avatar.jpg" alt="my avatar">
+        </div>
+      </header>
 
-        <div class="film_container">
-          <div class="film">
-            <img
+      <main>
+        <div id="films">
+
+          <div
+            class="film_container"
+            v-for="film in films">
+            <div class="film">
+              <img
               src="https://image.tmdb.org/t/p/w220_and_h330_face//sL0Ay3GQZRup2xOPkL63qujgzgh.jpg"
               alt="foto film"
-            >
-            <div class="info_film">
-              <h4>Titolo: <span>Titolo 1</span></h4>
-              <h4>Titolo originale: <span>Titolo originale sdasdasdad\s</span></h4>
-              <h4>
-                Voto:
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
-              </h4>
-              <h4>Overview:
-                <span>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                </span>
-              </h4>
+              >
+              <div class="info_film">
+                <h4>Titolo: <span>Titolo 1</span></h4>
+                <h4>Titolo originale: <span>Titolo originale sdasdasdad\s</span></h4>
+                <h4>
+                  Voto:
+                  <span><i class="fas fa-star"></i></span>
+                  <span><i class="fas fa-star"></i></span>
+                  <span><i class="fas fa-star"></i></span>
+                  <span><i class="fas fa-star"></i></span>
+                  <span><i class="fas fa-star"></i></span>
+                </h4>
+                <h4>Overview:
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                  </span>
+                </h4>
+              </div>
             </div>
           </div>
-        </div>
-        
 
-      </div>
-    </main>
+
+        </div>
+      </main>
+
+    </div>
 
     <script src="js/script.js" charset="utf-8"></script>
   </body>

@@ -118,7 +118,8 @@ h4 > span {
   color: #ffffff;
   font-weight: 700;
 }
-.search_form > input:focus {
+.search_form > input:focus,
+.search_form > button:focus {
   outline: none;
 }
 .search_form > button {
