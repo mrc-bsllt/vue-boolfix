@@ -111,3 +111,22 @@ h1 {
 }
 /* /search form */
 /* /header */
+
+/* main */
+main {
+  padding: 50px;
+}
+#films {
+  display: flex;
+  flex-wrap: wrap;
+}
+.film_container {
+  width: calc(100% / 7);
+  padding: 30px 0;
+}
+.film {
+  width: 200px;
+  height: 330px;
+  margin: auto;
+}
+/* /main */
