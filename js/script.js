@@ -38,7 +38,7 @@ var app = new Vue (
           .get("https://api.themoviedb.org/3/search/movie", {
             params: {
               api_key: "6aec7bf32e62af91512f360891825035",
-              query: "ritorno al fut",
+              query: "ritorno",
               language: "it-IT"
             }
           })
