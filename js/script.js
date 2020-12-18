@@ -26,19 +26,21 @@ var app = new Vue (
     el: "#app",
     data: {
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
-      films: []
+      films: [],
+      searchInputVal: ""
     }, //fine data
 
     methods: {
       searchFilms: function() {
 
         const self = this;
+        const query = this.searchInputVal;
 
         axios
           .get("https://api.themoviedb.org/3/search/movie", {
             params: {
               api_key: "6aec7bf32e62af91512f360891825035",
-              query: "ritorno",
+              query: query,
               language: "it-IT"
             }
           })
