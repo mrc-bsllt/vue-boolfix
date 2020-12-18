@@ -20,8 +20,8 @@ var app = new Vue (
             }
           })
           .then(function (response) {
-              this.films = response.data.results;
-              console.log(this.films);
+              self.films = response.data.results;
+              console.log(self.films);
             }
           )
 
