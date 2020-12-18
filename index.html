@@ -35,8 +35,15 @@
         </div>
 
         <div class="search_form">
-          <input type="text" name="" value="" placeholder="Ricerca per titolo" v-model="searchInputVal">
-          <button type="button" name="button" @click="searchFilms()">
+          <input
+            type="text"
+            placeholder="Ricerca per titolo"
+            v-model="searchInputVal"
+            @keyup="searchFilms()">
+          <button
+            type="button"
+            name="button"
+            @click="searchFilms()">
             <i class="fas fa-search"></i>
           </button>
           <img src="img/my_avatar.jpg" alt="my avatar">
