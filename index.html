@@ -51,11 +51,10 @@
       </header>
 
       <main>
-        <div id="films">
+        <div id="films" v-if="films.length != 0 || searchInputVal != ''">
 
           <div
             class="film_container"
-            v-if="films.length != 0"
             v-for="film in films">
             <div class="film">
               <img
@@ -82,6 +81,12 @@
             </div>
           </div>
 
+        </div>
+
+        <div id="no_found" v-else>
+          <div class="message">
+            <p>OOOOOPS! NON TROVO NIENTE! :(</p>
+          </div>
         </div>
       </main>
 

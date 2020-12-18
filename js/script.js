@@ -35,6 +35,7 @@ var app = new Vue (
 
         const self = this;
         const query = this.searchInputVal;
+        self.films = [];
 
         axios
           .get("https://api.themoviedb.org/3/search/movie", {
@@ -46,10 +47,8 @@ var app = new Vue (
           })
           .then(function (response) {
               self.films = response.data.results;
-              console.log(self.films);
             }
           )
-
 
       }
     } //fine methods

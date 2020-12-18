@@ -182,4 +182,19 @@ main {
 .info_film:hover {
   opacity: 1;
 }
+#no_found {
+  position: relative;
+  height: calc(100vh - 150px);
+  background-color: rgba(204, 204, 204, 0.1);
+}
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.message > p {
+  font-size: 30px;
+  color: #ffffff;
+}
 /* /main */
