@@ -7,7 +7,7 @@
 
 /* generale */
 body {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #000000;
 }
 a {
   text-decoration: none;
@@ -18,6 +18,9 @@ ul {
 }
 ul > li {
   display: inline-block;
+  position: relative;
+  padding: 0 10px;
+  cursor: pointer;
 }
 /* /generale */
 
@@ -25,8 +28,8 @@ ul > li {
 header {
   display: flex;
   height: 50px;
-  background-color: #000000;
 }
+/* title */
 .title {
   display: flex;
   justify-content: center;
@@ -38,15 +41,12 @@ h1 {
   color: #E50914;
   font-style: italic;
 }
+/* /title */
+/* nav */
 .nav {
   width: 60%;
   height: 100%;
   line-height: 50px;
-}
-#nav_list > li {
-  position: relative;
-  padding: 0 10px;
-  cursor: pointer;
 }
 #nav_list > li::before {
   content: "";
@@ -71,12 +71,43 @@ h1 {
 #nav_list > li.active::before {
   width: 100%;
 }
-
+/* /nav */
+/* search form */
 .search_form {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   width: 30%;
   height: 100%;
+  padding: 0 10px;
 }
+.search_form > input,
+.search_form > button {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  background-color: transparent;
+}
+.search_form > input {
+  width: 400px;
+  /* padding-left: 10px; */
+  color: #ffffff;
+  font-weight: 700;
+}
+.search_form > input:focus {
+  outline: none;
+}
+.search_form > button {
+  color: #cccccc;
+  background-color: rgba(204, 204, 204, 0.3);
+  cursor: pointer;
+}
+.search_form > img {
+  width: 40px;
+  margin-left: 40px;
+  border: 1px solid #E50914;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* /search form */
 /* /header */
