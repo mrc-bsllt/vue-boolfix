@@ -48,15 +48,16 @@
 
           <div
             class="film_container"
+            v-if="films.length != 0"
             v-for="film in films">
             <div class="film">
               <img
-              src="https://image.tmdb.org/t/p/w220_and_h330_face//sL0Ay3GQZRup2xOPkL63qujgzgh.jpg"
+              :src="prefix + film.backdrop_path"
               alt="foto film"
               >
               <div class="info_film">
-                <h4>Titolo: <span>Titolo 1</span></h4>
-                <h4>Titolo originale: <span>Titolo originale sdasdasdad\s</span></h4>
+                <h4>Titolo: <span>{{ film.title }}</span></h4>
+                <h4>Titolo originale: <span>{{ film.original_title }}</span></h4>
                 <h4>
                   Voto:
                   <span><i class="fas fa-star"></i></span>
@@ -67,13 +68,12 @@
                 </h4>
                 <h4>Overview:
                   <span>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    {{ film.overview }}
                   </span>
                 </h4>
               </div>
             </div>
           </div>
-
 
         </div>
       </main>
