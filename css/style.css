@@ -49,7 +49,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
+  width: 200px;
   height: 100%;
 }
 h1 {
@@ -68,7 +68,7 @@ h4 > span {
 /* /title */
 /* nav */
 .nav {
-  width: 60%;
+  width: calc(60% - 200px);
   height: 100%;
   line-height: 50px;
 }
@@ -95,13 +95,16 @@ h4 > span {
 #nav_list > li.active::before {
   width: 100%;
 }
+#hamburger_menu {
+  display: none;
+}
 /* /nav */
 /* search form */
 .search_form {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 30%;
+  width: 40%;
   height: 100%;
   padding: 0 10px;
 }
@@ -211,5 +214,42 @@ main {
 .message > p {
   font-size: 30px;
   color: #ffffff;
+  text-align: center;
 }
 /* /main */
+
+/* responsive */
+@media screen and (max-width: 1600px) {
+  .film_container {
+    width: calc(100% / 5);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  #nav_list {
+    display: none;
+  }
+  #hamburger_menu {
+    display: flex;
+    align-items: center;
+  }
+  #hamburger_menu > a {
+    color: #cccccc;
+    font-size: 30px;
+  }
+  .film_container {
+    width: calc(100% / 4);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .film_container {
+    width: calc(100% / 3);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .film_container {
+    width: calc(100% / 2);
+  }
+}
