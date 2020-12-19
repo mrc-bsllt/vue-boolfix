@@ -156,7 +156,22 @@ main {
   margin: auto;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 0px 6px 1px #E50914;;
+  box-shadow: 0px 0px 6px 1px #E50914;
+}
+.film::after {
+  content: "IMMAGINE NON DISPONIBILE :(";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 330px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: rgba(204, 204, 204, 0.1);
+  text-align: center;
+  z-index: -1;
 }
 .film > img {
   width: 100%;

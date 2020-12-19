@@ -58,6 +58,7 @@
             v-for="film in films">
             <div class="film">
               <img
+              v-if="film.backdrop_path != null"
               :src="prefix + film.backdrop_path"
               alt="foto film"
               >
