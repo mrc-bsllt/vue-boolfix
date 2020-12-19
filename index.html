@@ -51,7 +51,7 @@
             type="text"
             placeholder="Ricerca per titolo"
             v-model="searchInputVal"
-            @Keyup="searchFilms()">
+            @keyup="searchFilms()">
           <button
             type="button"
             name="button"
@@ -63,8 +63,25 @@
       </header>
 
       <main>
-        <div id="films" v-if="films.length != 0">
+        <div
+          id="no_found"
+          v-if="totalResult == 0">
+          <div class="message">
+            <p>OOOOOPS! NON TROVO NIENTE! :(</p>
+          </div>
+        </div>
 
+        <div
+          id="start_search"
+          v-else-if="films.length == 0 && searchInputVal == ''">
+          <div class="message">
+            <p>INIZIA UNA NUOVA RICERCA</p>
+          </div>
+        </div>
+
+        <div
+          id="films"
+          v-else>
           <div
             class="film_container"
             v-for="(film,index) in films">
@@ -101,11 +118,6 @@
 
         </div>
 
-        <div id="no_found" v-else>
-          <div class="message">
-            <p>OOOOOPS! NON TROVO NIENTE! :(</p>
-          </div>
-        </div>
       </main>
 
     </div>

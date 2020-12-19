@@ -232,7 +232,8 @@ main {
   transform: scale(1.2);
   transition: 0.3s linear;
 }
-#no_found {
+#no_found,
+#start_search {
   position: relative;
   height: calc(100vh - 150px);
   background-color: rgba(204, 204, 204, 0.1);
@@ -247,6 +248,12 @@ main {
   font-size: 30px;
   color: #ffffff;
   text-align: center;
+}
+#start_search > .message > p::after {
+  content: "\f002";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  margin-left: 10px;
 }
 /* /main */
 
