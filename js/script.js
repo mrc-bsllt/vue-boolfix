@@ -28,7 +28,7 @@ var app = new Vue (
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
       searchInputVal: "",
-      hamburgerStatus: false
+      hamburgerStatus: false,
     }, //fine data
 
     methods: {
@@ -49,6 +49,16 @@ var app = new Vue (
           })
           .then(function (response) {
             self.films = response.data.results;
+            // console.log(self.films.vote_average);
+
+            self.films.forEach(
+              (element) => {
+                // console.log(Math.round(Math.round(element.vote_average)/2));
+                element.vote_average = Math.floor(Math.round(element.vote_average)/2);
+                element.emptyStars = 5 - element.vote_average;
+              }
+            );
+
           }
         )
 

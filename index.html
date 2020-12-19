@@ -51,7 +51,7 @@
             type="text"
             placeholder="Ricerca per titolo"
             v-model="searchInputVal"
-            @keyup="searchFilms()">
+            @Keyup="searchFilms()">
           <button
             type="button"
             name="button"
@@ -67,7 +67,7 @@
 
           <div
             class="film_container"
-            v-for="film in films">
+            v-for="(film,index) in films">
             <div class="film">
               <img
               v-if="film.backdrop_path != null"
@@ -82,11 +82,13 @@
                 </h4>
                 <h4>
                   Voto:
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
+                  <span
+                    v-for="star in films[index].vote_average">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span
+                  v-for="star in films[index].emptyStars">
+                  <i class="far fa-star"></i></span>
                 </h4>
                 <h4>Overview:
                   <span>
