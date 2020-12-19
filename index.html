@@ -35,7 +35,14 @@
           </ul>
 
           <div id="hamburger_menu">
-            <a href="#"><i class="fas fa-bars"></i></a>
+            <a href="#" @click="activeHamburger"><i class="fas fa-bars"></i></a>
+            <ul id="hamburger_list" v-if="hamburgerStatus">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Serie TV</a></li>
+              <li class="active"><a href="#">Film</a></li>
+              <li><a href="#">Nuovi e popolari</a></li>
+              <li><a href="#">La mia lista</a></li>
+            </ul>
           </div>
         </div>
 

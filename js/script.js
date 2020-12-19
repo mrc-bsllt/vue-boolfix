@@ -27,7 +27,8 @@ var app = new Vue (
     data: {
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
-      searchInputVal: ""
+      searchInputVal: "",
+      hamburgerStatus: false
     }, //fine data
 
     methods: {
@@ -52,7 +53,16 @@ var app = new Vue (
         )
 
         }
-      }
+      }, //fine funzione
+
+      activeHamburger: function() {
+        if (this.hamburgerStatus == false) {
+          this.hamburgerStatus = true;
+        } else {
+          this.hamburgerStatus = false;
+        }
+      } //fine funzione
+
     } //fine methods
 
   } //fine istanza vue

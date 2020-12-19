@@ -16,7 +16,7 @@ a {
 ul {
   list-style: none;
 }
-ul > li {
+ul:not(#hamburger_list) > li {
   display: inline-block;
   position: relative;
   padding: 0 10px;
@@ -100,9 +100,31 @@ h4 > span {
 #nav_list > li.active::before {
   width: 100%;
 }
+/* hamburger menu */
 #hamburger_menu {
+  position: relative;
   display: none;
 }
+#hamburger_list {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  padding: 20px;
+  background-color: rgba(204, 204, 204, 0.2);
+  border-radius: 5px;
+  font-weight: 700;
+}
+#hamburger_list::before {
+  content: "\f0d8";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  position: absolute;
+  left: 10px;
+  top: -30.5px;
+  font-size: 37px;
+  color: rgba(204, 204, 204, 0.2);
+}
+/* /hamburger menu */
 /* /nav */
 /* search form */
 .search_form {
