@@ -41,12 +41,13 @@ var app = new Vue (
           .get("https://api.themoviedb.org/3/search/movie", {
             params: {
               api_key: "6aec7bf32e62af91512f360891825035",
-              query: query,
+              query,
               language: "it-IT"
             }
           })
           .then(function (response) {
               self.films = response.data.results;
+              
             }
           )
       }
