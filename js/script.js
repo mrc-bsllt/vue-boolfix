@@ -49,20 +49,19 @@ var app = new Vue (
             }
           })
           .then(function (response) {
-            self.films = response.data.results;
-            self.totalResult = response.data.total_results;
-            console.log(self.totalResult);
+              self.films = response.data.results;
+              self.totalResult = response.data.total_results;
+              console.log(self.totalResult);
 
-            self.films.forEach(
-              (element) => {
-                element.vote_average = Math.floor(Math.round(element.vote_average)/2);
-                element.emptyStars = 5 - element.vote_average;
-              }
-            );
+              self.films.forEach(
+                (element) => {
+                  element.vote_average = Math.floor(Math.round(element.vote_average)/2);
+                  element.emptyStars = 5 - element.vote_average;
+                }
+              );
 
-          }
-        )
-
+            }
+          )
         }
 
       }, //fine funzione
