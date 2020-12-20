@@ -51,15 +51,22 @@ var app = new Vue (
           .then(function (response) {
               self.films = response.data.results;
               self.totalResult = response.data.total_results;
-              console.log(self.totalResult);
 
               self.films.forEach(
                 (element) => {
-                  element.vote_average = Math.floor(Math.round(element.vote_average)/2);
-                  element.emptyStars = 5 - element.vote_average;
+                  const notFloorNumber = Math.round(element.vote_average)/2;
+
+                  element.fullStars = Math.floor(notFloorNumber);
+
+                  if ((notFloorNumber - element.fullStars) != 0) {
+                    element.halfEmptyStar = 1;
+                  } else {
+                    element.halfEmptyStar = 0;
+                  }
+
+                  element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
                 }
               );
-
             }
           )
         }

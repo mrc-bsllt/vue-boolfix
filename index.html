@@ -45,7 +45,6 @@
             </ul>
           </div>
         </div>
-
         <div class="search_form">
           <input
             type="text"
@@ -99,13 +98,18 @@
                 </h4>
                 <h4>
                   Voto:
-                  <span
-                    v-for="star in films[index].vote_average">
-                    <i class="fas fa-star"></i>
-                  </span>
-                  <span
-                  v-for="star in films[index].emptyStars">
-                  <i class="far fa-star"></i></span>
+                  <i
+                    class="fas fa-star"
+                    v-for="star in films[index].fullStars">
+                  </i>
+                  <i
+                    class="fas fa-star-half-alt"
+                    v-for="star in films[index].halfEmptyStar">
+                  </i>
+                  <i
+                    class="far fa-star"
+                    v-for="star in films[index].emptyStars">
+                  </i>
                 </h4>
                 <h4>Overview:
                   <span>
