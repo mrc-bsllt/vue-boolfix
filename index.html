@@ -167,7 +167,7 @@
 
       <footer>
         <button
-          v-if="films.length != 0 && tvSeries.length != 0"
+          v-if="films.length != 0 || tvSeries.length != 0"
           @click="toggleActiveClass()"
           type="button"
           name="button">
@@ -177,7 +177,7 @@
 
       <section id="genres_selection" :class="activeClass ? 'active': ''">
         <ul id="genres_list">
-          <li v-for="genre in genres">
+          <li v-for="(genre, index) in genres" @click="filterByGenre(index)">
             <a href="#"><em>{{ genre.name }}</em></a>
           </li>
         </ul>

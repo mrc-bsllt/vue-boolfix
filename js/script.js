@@ -131,6 +131,26 @@ var app = new Vue (
         } else {
           this.activeClass = true;
         }
+      }, //fine funzione
+
+      filterByGenre: function(index) {
+        const idChosenGenre = this.genres[index].id;
+
+        const filteredFilms = this.films.filter(
+          (element) => {
+            return element.genre_ids.includes(idChosenGenre)
+          }
+        );
+        this.films = filteredFilms;
+
+        const filteredSeries = this.tvSeries.filter(
+          (element) => {
+            return element.genre_ids.includes(idChosenGenre)
+          }
+        );
+        this.tvSeries = filteredSeries;
+
+        this.activeClass = false;
       } //fine funzione
 
     }, //fine methods
