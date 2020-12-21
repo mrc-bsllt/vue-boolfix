@@ -72,20 +72,20 @@ var app = new Vue (
 
                   element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
 
-                  axios
-                    .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
-                      params: {
-                        api_key: "6aec7bf32e62af91512f360891825035",
-                      }
-                    })
-                    .then(function(response) {
-                      element.cast = [];
-
-                      for (var i = 0; i < 5; i++) {
-                        element.cast.push(response.data.cast[i].name);
-                      }
-
-                    });
+                  // axios
+                  //   .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
+                  //     params: {
+                  //       api_key: "6aec7bf32e62af91512f360891825035",
+                  //     }
+                  //   })
+                  //   .then(function(response) {
+                  //     element.cast = [];
+                  //
+                  //     for (var i = 0; i < 5; i++) {
+                  //       element.cast.push(response.data.cast[i].name);
+                  //     }
+                  //
+                  //   });
                 }
               );
             }
@@ -128,6 +128,7 @@ var app = new Vue (
                   }
 
                   element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+
                 }
               );
             }

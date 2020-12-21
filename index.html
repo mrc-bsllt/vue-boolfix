@@ -81,7 +81,7 @@
         <div id="films" v-else>
 
           <!-- visualizzo a schermo i FILM -->
-          <h2 v-if="films[0].cast.length != 0">Film</h2>
+          <h2 v-if="films.length != 0">Film</h2>
           <div class="flex_contaier">
             <div class="film_container" v-for="(film,index) in films">
               <div class="film">
@@ -148,7 +148,6 @@
                     Titolo originale:
                     <span>{{ serie.original_name }}</span>
                   </h4>
-                  <h4>
                     Voto:
                     <i class="fas fa-star" v-for="star in tvSeries[index].fullStars">
                     </i>
