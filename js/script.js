@@ -84,8 +84,7 @@ var app = new Vue (
                       for (var i = 0; i < 5; i++) {
                         element.cast.push(response.data.cast[i].name);
                       }
-                      
-                      console.log(element);
+
                     });
                 }
               );
