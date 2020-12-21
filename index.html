@@ -168,13 +168,14 @@
       <footer>
         <button
           v-if="films.length != 0 && tvSeries.length != 0"
+          @click="toggleActiveClass()"
           type="button"
           name="button">
           FILTRA PER GENERE
         </button>
       </footer>
 
-      <section id="genres_selection" class="active">
+      <section id="genres_selection" :class="activeClass ? 'active': ''">
         <ul id="genres_list">
           <li v-for="genre in genres">
             <a href="#"><em>{{ genre.name }}</em></a>

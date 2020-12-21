@@ -32,6 +32,7 @@ var app = new Vue (
       totalResult: -1,
       searchInputVal: "",
       hamburgerStatus: false,
+      activeClass: false
     }, //fine data
 
     methods: {
@@ -109,7 +110,6 @@ var app = new Vue (
                   element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
                 }
               );
-              console.log(self.tvSeries);
             }
           )
         }
@@ -122,6 +122,14 @@ var app = new Vue (
           this.hamburgerStatus = true;
         } else {
           this.hamburgerStatus = false;
+        }
+      }, //fine funzione
+
+      toggleActiveClass: function() {
+        if (this.activeClass) {
+          this.activeClass = false;
+        } else {
+          this.activeClass = true;
         }
       } //fine funzione
 
