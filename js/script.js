@@ -42,7 +42,7 @@ var app = new Vue (
         if (query != "") {
           axios
           .get("https://api.themoviedb.org/3/search/movie", {
-            params: {
+              params: {
               api_key: "6aec7bf32e62af91512f360891825035",
               query,
               language: "it-IT"
@@ -71,6 +71,10 @@ var app = new Vue (
           )
         }
 
+      }, //fine funzione
+
+      saluta: function() {
+        console.log("ciao");
       }, //fine funzione
 
       activeHamburger: function() {
