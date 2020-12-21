@@ -27,7 +27,9 @@ var app = new Vue (
     data: {
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
+      filmsBackup: [],
       tvSeries: [],
+      tvSeriesBackup: [],
       genres: [],
       totalResult: -1,
       searchInputVal: "",
@@ -53,6 +55,7 @@ var app = new Vue (
           })
           .then(function (response) {
               self.films = response.data.results;
+              self.filmsBackup = response.data.results;
               self.totalResult = response.data.total_results;
 
               self.films.forEach(
@@ -93,6 +96,7 @@ var app = new Vue (
           })
           .then(function (response) {
               self.tvSeries = response.data.results;
+              self.tvSeriesBackup = response.data.results;
               self.totalResult = response.data.total_results;
 
               self.tvSeries.forEach(
@@ -135,6 +139,8 @@ var app = new Vue (
 
       filterByGenre: function(index) {
         const idChosenGenre = this.genres[index].id;
+        this.films = this.filmsBackup;
+        this.tvSeries = this.tvSeriesBackup;
 
         const filteredFilms = this.films.filter(
           (element) => {

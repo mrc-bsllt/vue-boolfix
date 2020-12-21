@@ -167,7 +167,7 @@
 
       <footer>
         <button
-          v-if="films.length != 0 || tvSeries.length != 0"
+          v-if="(films.length != 0 || tvSeries.length != 0) && searchInputVal != ''"
           @click="toggleActiveClass()"
           type="button"
           name="button">
