@@ -27,6 +27,7 @@ var app = new Vue (
     data: {
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
+      tvSeries: [],
       totalResult: -1,
       searchInputVal: "",
       hamburgerStatus: false,
@@ -73,8 +74,46 @@ var app = new Vue (
 
       }, //fine funzione
 
-      saluta: function() {
-        console.log("ciao");
+      searchTvSeries: function() {
+
+        const self = this;
+        const query = this.searchInputVal;
+        self.tvSeries = [];
+
+        if (query != "") {
+          axios
+          .get("https://api.themoviedb.org/3/search/tv", {
+              params: {
+              api_key: "6aec7bf32e62af91512f360891825035",
+              query,
+              language: "it-IT"
+            }
+          })
+          .then(function (response) {
+              self.tvSeries = response.data.results;
+              self.totalResult = response.data.total_results;
+
+              self.tvSeries.forEach(
+                (element) => {
+                  const notFloorNumber = Math.round(element.vote_average)/2;
+
+                  element.fullStars = Math.floor(notFloorNumber);
+
+                  if ((notFloorNumber - element.fullStars) != 0) {
+                    element.halfEmptyStar = 1;
+                  } else {
+                    element.halfEmptyStar = 0;
+                  }
+
+                  element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+                }
+              );
+              console.log(self.tvSeries);
+            }
+          )
+        }
+
+
       }, //fine funzione
 
       activeHamburger: function() {

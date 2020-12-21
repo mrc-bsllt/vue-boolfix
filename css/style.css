@@ -61,6 +61,11 @@ h1 {
   color: #E50914;
   font-style: italic;
 }
+h2 {
+  color: #ffffff;
+  margin: 20px;
+  text-transform: uppercase;
+}
 h4 {
   margin: 10px 0;
   color: #ffffff;
@@ -172,7 +177,7 @@ main {
   margin-top: 50px;
   padding: 50px;
 }
-#films {
+.flex_contaier {
   display: flex;
   flex-wrap: wrap;
 }
@@ -235,6 +240,9 @@ main {
 }
 .info_film i {
   color: #F7B700;
+}
+.info_film span.no_ov {
+  font-size: 10px;
 }
 .info_film:hover {
   opacity: 1;
