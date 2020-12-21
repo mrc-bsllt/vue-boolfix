@@ -1,5 +1,4 @@
-// 6aec7bf32e62af91512f360891825035 <-- chiave api
-
+// 6aec7bf32e62af91512f360891825035
 // {
 //   "adult": false,
 //   "backdrop_path": "/fq3wyOs1RHyz2yfzsb4sck7aWRG.jpg",
@@ -71,10 +70,22 @@ var app = new Vue (
                   }
 
                   element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+
+                  axios
+                    .get("https://api.themoviedb.org/3/movie/105/credits", {
+                      params: {
+                        api_key: "6aec7bf32e62af91512f360891825035",
+                        movie_id: element.id
+                      }
+                    })
+                    .then(function(response) {
+                      console.log(response.data.cast);
+                    });
                 }
               );
             }
-          )
+          );
+
         }
 
       }, //fine funzione
