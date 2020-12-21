@@ -49,8 +49,8 @@
           <input
             type="text"
             placeholder="Ricerca per titolo"
-            v-model="searchInputVal">
-            <!-- @keyup="searchFilms(), searchTvSeries()"> -->
+            v-model="searchInputVal"
+            @keyup="searchFilms(), searchTvSeries()">
           <button
             type="button"
             name="button"
@@ -99,8 +99,8 @@
                   <h4>Titolo: <span>{{ film.title }}</span></h4>
                   <h4>
                     Cast:
-                    <span v-for="actor in castFilms">
-                      {{ actor.name }},
+                    <span v-for="actor in films[index].cast">
+                      {{ actor }}
                     </span>
                   </h4>
                   <h4 v-if="film.title != film.original_title">
