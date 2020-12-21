@@ -118,7 +118,6 @@ var app = new Vue (
           )
         }
 
-
       }, //fine funzione
 
       activeHamburger: function() {

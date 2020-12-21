@@ -176,6 +176,9 @@
       </footer>
 
       <section id="genres_selection" :class="activeClass ? 'active': ''">
+        <span class="close_genres_section">
+          <a href="#" @click="toggleActiveClass()"><i class="fas fa-times"></i></a>
+        </span>
         <ul id="genres_list">
           <li v-for="(genre, index) in genres" @click="filterByGenre(index)">
             <a href="#"><em>{{ genre.name }}</em></a>

@@ -303,11 +303,22 @@ footer > button {
   left: 0;
   width: 100%;
   height: calc(100vh - 50px);
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 2;
 }
 #genres_selection.active {
   display: inline-block;
+}
+.close_genres_section {
+  display: block;
+  color: #ffffff;
+  text-align: right;
+}
+.close_genres_section > a {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(204, 204, 204, 0.9);
 }
 #genres_list {
   margin: 20px;
