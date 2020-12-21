@@ -176,7 +176,9 @@
 
       <section id="genres_selection" class="active">
         <ul id="genres_list">
-          <li v-for="genre in genres"><a href="#">{{ genre.name }}</a></li>
+          <li v-for="genre in genres">
+            <a href="#"><em>{{ genre.name }}</em></a>
+          </li>
         </ul>
       </section>
 
