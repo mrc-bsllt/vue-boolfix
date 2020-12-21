@@ -72,14 +72,15 @@ var app = new Vue (
                   element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
 
                   axios
-                    .get("https://api.themoviedb.org/3/movie/105/credits", {
+                    .get("https://api.themoviedb.org/3/movie/{movie_id}/credits", {
                       params: {
                         api_key: "6aec7bf32e62af91512f360891825035",
                         movie_id: element.id
                       }
                     })
                     .then(function(response) {
-                      console.log(response.data.cast);
+                      response.data.id = element.id
+                      console.log(response.data);
                     });
                 }
               );
