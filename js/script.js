@@ -28,6 +28,7 @@ var app = new Vue (
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
       tvSeries: [],
+      genres: [],
       totalResult: -1,
       searchInputVal: "",
       hamburgerStatus: false,
@@ -124,7 +125,24 @@ var app = new Vue (
         }
       } //fine funzione
 
-    } //fine methods
+    }, //fine methods
+
+    mounted: function() {
+      const self = this;
+
+      axios
+      .get("https://api.themoviedb.org/3/genre/movie/list", {
+          params: {
+          api_key: "6aec7bf32e62af91512f360891825035",
+        }
+      })
+      .then(function (response) {
+          self.genres = response.data.genres
+        }
+      )
+
+    } //fine mounted
+
 
   } //fine istanza vue
 );
