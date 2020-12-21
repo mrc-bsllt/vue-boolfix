@@ -27,10 +27,12 @@ var app = new Vue (
       prefix: "https://image.tmdb.org/t/p/w220_and_h330_face/",
       films: [],
       filmsBackup: [],
+      castFilms: [],
       tvSeries: [],
       tvSeriesBackup: [],
       genres: [],
-      totalResult: -1,
+      totalResultFilms: -1,
+      totalResultSeries: -1,
       searchInputVal: "",
       hamburgerStatus: false,
       activeClass: false
@@ -78,8 +80,12 @@ var app = new Vue (
                       }
                     })
                     .then(function(response) {
-                      response.data.id = element.id
-                      console.log(response.data.cast);
+
+                      for (var i = 0; i < 5; i++) {
+                        self.castFilms.push(response.data.cast[i]);
+                      }
+                      
+                      // console.log(self.castFilms);
                     });
                 }
               );
@@ -108,7 +114,7 @@ var app = new Vue (
           .then(function (response) {
               self.tvSeries = response.data.results;
               self.tvSeriesBackup = response.data.results;
-              self.totalResult = response.data.total_results;
+              self.totalResultSeries = response.data.total_results;
 
               self.tvSeries.forEach(
                 (element) => {

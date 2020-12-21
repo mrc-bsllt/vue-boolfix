@@ -64,7 +64,7 @@
       <main>
         <div
           id="no_found"
-          v-if="totalResult == 0">
+          v-if="totalResultFilms == 0 && totalResultSeries == 0">
           <div class="message">
             <p>OOOOOPS! NON TROVO NIENTE! :(</p>
           </div>
@@ -97,6 +97,12 @@
                     Lingua originale: {{ film.original_language }}
                   </h4>
                   <h4>Titolo: <span>{{ film.title }}</span></h4>
+                  <h4>
+                    Cast:
+                    <span v-for="actor in castFilms">
+                      {{ actor.name }},
+                    </span>
+                  </h4>
                   <h4 v-if="film.title != film.original_title">
                     Titolo originale:
                     <span>{{ film.original_title }}</span>
