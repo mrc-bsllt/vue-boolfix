@@ -97,12 +97,12 @@
                     Lingua originale: {{ film.original_language }}
                   </h4>
                   <h4>Titolo: <span>{{ film.title }}</span></h4>
-                  <h4>
+                  <!-- <h4 v-if="films[index].cast.length != 0">
                     Cast:
                     <span v-for="actor in films[index].cast">
                       {{ actor }},
                     </span>
-                  </h4>
+                  </h4> -->
                   <h4 v-if="film.title != film.original_title">
                     Titolo originale:
                     <span>{{ film.original_title }}</span>

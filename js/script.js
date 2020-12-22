@@ -56,7 +56,7 @@ var app = new Vue (
           .then(function (response) {
               self.films = response.data.results;
               self.filmsBackup = response.data.results;
-              self.totalResult = response.data.total_results;
+              self.totalResultFilms = response.data.total_results;
 
               self.films.forEach(
                 (element) => {
@@ -79,10 +79,12 @@ var app = new Vue (
                   //     }
                   //   })
                   //   .then(function(response) {
-                  //     element.cast = [];
-                  //
-                  //     for (var i = 0; i < 5; i++) {
-                  //       element.cast.push(response.data.cast[i].name);
+                  //     // console.log(response.data.cast.length >= 5);
+                  //     if (response.data.cast.length > 4) {
+                  //       element.cast = [];
+                  //       for (var i = 0; i < 5; i++) {
+                  //         element.cast.push(response.data.cast[i].name);
+                  //       }
                   //     }
                   //
                   //   });
