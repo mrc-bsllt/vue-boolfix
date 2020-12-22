@@ -54,8 +54,7 @@ var app = new Vue (
                   params: {
                     api_key: "6aec7bf32e62af91512f360891825035",
                   }
-                })
-                .then((response) => {
+                }).then((response) => {
                   for (var i = 0; i < response.data.cast.length; i++) {
                     if (element.cast.length < 5) {
                       element.cast.push(response.data.cast[i].name);
@@ -82,41 +81,39 @@ var app = new Vue (
               query,
               language: "it-IT"
             }
-          })
-          .then( (response) => {
-              self.tvSeries = response.data.results;
-              self.tvSeriesBackup = response.data.results;
-              self.totalResultSeries = response.data.total_results;
+          }).then( (response) => {
+            self.tvSeries = response.data.results;
+            self.tvSeriesBackup = response.data.results;
+            self.totalResultSeries = response.data.total_results;
 
-              for(var i = 0; i < self.tvSeries.length; i++) {
-                const element = self.tvSeries[i];
-                element.cast = [];
-                const notFloorNumber = Math.round(element.vote_average)/2;
+            for(var i = 0; i < self.tvSeries.length; i++) {
+              const element = self.tvSeries[i];
+              element.cast = [];
+              const notFloorNumber = Math.round(element.vote_average)/2;
 
-                element.fullStars = Math.floor(notFloorNumber);
+              element.fullStars = Math.floor(notFloorNumber);
 
-                if ((notFloorNumber - element.fullStars) != 0) {
-                  element.halfEmptyStar = 1;
-                } else {
-                  element.halfEmptyStar = 0;
-                }
+              if ((notFloorNumber - element.fullStars) != 0) {
+                element.halfEmptyStar = 1;
+              } else {
+                element.halfEmptyStar = 0;
+              }
 
-                element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+              element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
 
-                axios
-                  .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
-                    params: {
-                      api_key: "6aec7bf32e62af91512f360891825035",
+              axios
+                .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
+                  params: {
+                    api_key: "6aec7bf32e62af91512f360891825035",
+                  }
+                }).then((response) => {
+                  for (var i = 0; i < response.data.cast.length; i++) {
+                    if (element.cast.length < 5) {
+                      element.cast.push(response.data.cast[i].name);
                     }
-                  })
-                  .then((response) => {
-                    for (var i = 0; i < response.data.cast.length; i++) {
-                      if (element.cast.length < 5) {
-                        element.cast.push(response.data.cast[i].name);
-                      }
-                    }
-                    this.$forceUpdate();
-                  });
+                  }
+                  this.$forceUpdate();
+                });
               }
             }
           )
