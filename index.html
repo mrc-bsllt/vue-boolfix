@@ -97,12 +97,12 @@
                     Lingua originale: {{ film.original_language }}
                   </h4>
                   <h4>Titolo: <span>{{ film.title }}</span></h4>
-                  <!-- <h4 v-if="films[index].cast.length != 0">
+                  <h4 v-if="film.cast && film.cast.length > 0">
                     Cast:
-                    <span v-for="actor in films[index].cast">
+                    <span v-for="actor in film.cast">
                       {{ actor }},
                     </span>
-                  </h4> -->
+                  </h4>
                   <h4 v-if="film.title != film.original_title">
                     Titolo originale:
                     <span>{{ film.original_title }}</span>
@@ -147,6 +147,12 @@
                   <h4 v-if="serie.name != serie.original_name">
                     Titolo originale:
                     <span>{{ serie.original_name }}</span>
+                    <h4 v-if="serie.cast && serie.cast.length > 0">
+                      Cast:
+                      <span v-for="actor in serie.cast">
+                        {{ actor }},
+                      </span>
+                    </h4>
                   </h4>
                     Voto:
                     <i class="fas fa-star" v-for="star in tvSeries[index].fullStars">
