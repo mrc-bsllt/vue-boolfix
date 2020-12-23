@@ -50,7 +50,7 @@
             type="text"
             placeholder="Ricerca per titolo"
             v-model="searchInputVal"
-            @keyup="searchFilms(), searchTvSeries()">
+            @keydown.enter="searchFilms(), searchTvSeries()">
           <button
             type="button"
             name="button"
@@ -178,10 +178,10 @@
 
       <footer>
         <button
-          v-if="(films.length != 0 || tvSeries.length != 0) && searchInputVal != ''"
           @click="toggleActiveClass()"
           type="button"
           name="button">
+          <!-- v-if="(films.length != 0 || tvSeries.length != 0) && searchInputVal != ''" -->
           FILTRA PER GENERE
         </button>
       </footer>
