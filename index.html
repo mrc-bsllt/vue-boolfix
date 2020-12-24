@@ -50,7 +50,7 @@
             type="text"
             placeholder="Ricerca per titolo"
             v-model="searchInputVal"
-            @keyup="searchFilms(), searchTvSeries()">
+            @keyup="searchDebounce(searchFilms, searchTvSeries)">
           <button
             type="button"
             name="button"
@@ -63,14 +63,8 @@
 
       <main>
 
-        <!-- <div
-          id="start_search"
-          v-if="films.length == 0 && totalResultFilms != 0 && totalResultSeries != 0 && searchInputVal == ''">
-          <div class="message">
-            <p>INIZIA UNA NUOVA RICERCA</p>
-          </div>
-        </div> -->
-        <div id="top_rated_films" v-if="topRated.length != 0 && films.length == 0 && searchInputVal== ''">
+        <div id="top_rated_films"
+          v-if="topRated.length != 0 && films.length == 0 && searchInputVal== ''">
 
           <h2>I più votati</h2>
           <div class="flex_contaier">
@@ -120,7 +114,7 @@
 
         </div>
 
-        <div id="films" v-else-if="films.length != 0">
+        <div id="films" v-else-if="films.length != 0 || tvSeries.length != 0">
 
           <!-- visualizzo a schermo i FILM -->
           <h2 v-if="films.length != 0">Film</h2>

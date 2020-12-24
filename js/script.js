@@ -13,7 +13,8 @@ var app = new Vue (
       totalResultSeries: -1,
       searchInputVal: "",
       hamburgerStatus: false,
-      activeClass: false
+      activeClass: false,
+      debounce: null
     }, //fine data
 
     methods: {
@@ -158,6 +159,14 @@ var app = new Vue (
         this.tvSeries = newArraySeries;
 
         this.activeClass = false;
+      }, //fine funzione
+
+      searchDebounce: function(callback, callback2) {
+        clearTimeout(this.debounce);
+        this.debounce = setTimeout(() => {
+          callback();
+          callback2();
+        }, 500)
       } //fine funzione
 
     }, //fine methods
@@ -179,6 +188,7 @@ var app = new Vue (
 
     created: function() {
       const self = this;
+
       axios
         .get("https://api.themoviedb.org/3/movie/top_rated", {
           params: {
