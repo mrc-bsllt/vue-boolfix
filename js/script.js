@@ -7,6 +7,7 @@ var app = new Vue (
       filmsBackup: [],
       tvSeries: [],
       tvSeriesBackup: [],
+      topRated: [],
       genres: [],
       totalResultFilms: -1,
       totalResultSeries: -1,
@@ -121,6 +122,16 @@ var app = new Vue (
 
       }, //fine funzione
 
+      debounce: function(fn, delay) {
+        let timer;
+        return function() {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn()
+          }, 1000);
+        }
+      },
+
       activeHamburger: function() {
         if (this.hamburgerStatus == false) {
           this.hamburgerStatus = true;
@@ -142,19 +153,19 @@ var app = new Vue (
         this.films = this.filmsBackup;
         this.tvSeries = this.tvSeriesBackup;
 
-        const filteredFilms = this.films.filter(
+        const newArrayFilms = this.films.filter(
           (element) => {
             return element.genre_ids.includes(idChosenGenre)
           }
         );
-        this.films = filteredFilms;
+        this.films = newArrayFilms;
 
-        const filteredSeries = this.tvSeries.filter(
+        const newArraySeries = this.tvSeries.filter(
           (element) => {
             return element.genre_ids.includes(idChosenGenre)
           }
         );
-        this.tvSeries = filteredSeries;
+        this.tvSeries = newArraySeries;
 
         this.activeClass = false;
       } //fine funzione
@@ -172,9 +183,24 @@ var app = new Vue (
       .then(function (response) {
           self.genres = response.data.genres
         }
-      )
+      );
 
-    } //fine mounted
+    }, //fine mounted
+
+    created: function() {
+      axios
+        .get("https://api.themoviedb.org/3/movie/top_rated", {
+          params: {
+            api_key: "6aec7bf32e62af91512f360891825035",
+            language: "it-IT"
+          }
+        }).then(function(response) {
+
+          this.topRated = response.data.results;
+          console.log(this.topRated);
+
+        })
+    }
 
 
   } //fine istanza vue

@@ -50,7 +50,7 @@
             type="text"
             placeholder="Ricerca per titolo"
             v-model="searchInputVal"
-            @keydown.enter="searchFilms(), searchTvSeries()">
+            @keyup="searchFilms(), searchTvSeries()">
           <button
             type="button"
             name="button"
@@ -62,23 +62,16 @@
       </header>
 
       <main>
-        <div
-          id="no_found"
-          v-if="totalResultFilms == 0 && totalResultSeries == 0">
-          <div class="message">
-            <p>OOOOOPS! NON TROVO NIENTE! :(</p>
-          </div>
-        </div>
 
         <div
           id="start_search"
-          v-else-if="films.length == 0 && searchInputVal == ''">
+          v-if="films.length == 0 && totalResultFilms != 0 && totalResultSeries != 0 && searchInputVal == ''">
           <div class="message">
             <p>INIZIA UNA NUOVA RICERCA</p>
           </div>
         </div>
 
-        <div id="films" v-else>
+        <div id="films" v-else-if="films.length != 0">
 
           <!-- visualizzo a schermo i FILM -->
           <h2 v-if="films.length != 0">Film</h2>
@@ -174,6 +167,15 @@
           </div>
 
         </div>
+
+        <div
+          id="no_found"
+          v-else-if="totalResultFilms == 0 && totalResultSeries == 0">
+          <div class="message">
+            <p>OOOOOPS! NON TROVO NIENTE! :(</p>
+          </div>
+        </div>
+
       </main>
 
       <footer>
@@ -181,7 +183,6 @@
           @click="toggleActiveClass()"
           type="button"
           name="button">
-          <!-- v-if="(films.length != 0 || tvSeries.length != 0) && searchInputVal != ''" -->
           FILTRA PER GENERE
         </button>
       </footer>
