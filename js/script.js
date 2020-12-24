@@ -122,16 +122,6 @@ var app = new Vue (
 
       }, //fine funzione
 
-      debounce: function(fn, delay) {
-        let timer;
-        return function() {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            fn()
-          }, 1000);
-        }
-      },
-
       activeHamburger: function() {
         if (this.hamburgerStatus == false) {
           this.hamburgerStatus = true;
@@ -188,6 +178,7 @@ var app = new Vue (
     }, //fine mounted
 
     created: function() {
+      const self = this;
       axios
         .get("https://api.themoviedb.org/3/movie/top_rated", {
           params: {
@@ -196,8 +187,37 @@ var app = new Vue (
           }
         }).then(function(response) {
 
-          this.topRated = response.data.results;
-          console.log(this.topRated);
+          self.topRated = response.data.results;
+
+          for (var i = 0; i < self.topRated.length; i++) {
+            const element = self.topRated[i];
+            element.cast = [];
+            const notFloorNumber = Math.round(element.vote_average)/2;
+
+            element.fullStars = Math.floor(notFloorNumber);
+
+            if ((notFloorNumber - element.fullStars) != 0) {
+              element.halfEmptyStar = 1;
+            } else {
+              element.halfEmptyStar = 0;
+            }
+
+            element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+
+            axios
+              .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
+                params: {
+                  api_key: "6aec7bf32e62af91512f360891825035",
+                }
+              }).then((response) => {
+                for (var i = 0; i < response.data.cast.length; i++) {
+                  if (element.cast.length < 5) {
+                    element.cast.push(response.data.cast[i].name);
+                  }
+                }
+                self.$forceUpdate();
+              });
+          }
 
         })
     }

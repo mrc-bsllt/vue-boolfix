@@ -63,12 +63,61 @@
 
       <main>
 
-        <div
+        <!-- <div
           id="start_search"
           v-if="films.length == 0 && totalResultFilms != 0 && totalResultSeries != 0 && searchInputVal == ''">
           <div class="message">
             <p>INIZIA UNA NUOVA RICERCA</p>
           </div>
+        </div> -->
+        <div id="top_rated_films" v-if="topRated.length != 0 && films.length == 0 && searchInputVal== ''">
+
+          <h2>I più votati</h2>
+          <div class="flex_contaier">
+            <div class="film_container" v-for="(film,index) in topRated">
+              <div class="film">
+                <img
+                v-if="film.backdrop_path != null"
+                :src="prefix + film.backdrop_path"
+                alt="foto film">
+                <div class="info_film">
+                  <img :src='"img/" + film.original_language + "_flag.png"'
+                  v-if="film.original_language == 'it' || film.original_language == 'en' || film.original_language == 'fr' "
+                  :alt="film.title">
+                  <h4 class="original_language" v-else>
+                    Lingua originale: {{ film.original_language }}
+                  </h4>
+                  <h4>Titolo: <span>{{ film.title }}</span></h4>
+                  <h4 v-if="film.cast && film.cast.length > 0">
+                    Cast:
+                    <span v-for="actor in film.cast">
+                      {{ actor }},
+                    </span>
+                  </h4>
+                  <h4 v-if="film.title != film.original_title">
+                    Titolo originale:
+                    <span>{{ film.original_title }}</span>
+                  </h4>
+                  <h4>
+                    Voto:
+                    <i class="fas fa-star" v-for="star in topRated[index].fullStars">
+                    </i>
+                    <i class="fas fa-star-half-alt" v-for="star in topRated[index].halfEmptyStar">
+                    </i>
+                    <i class="far fa-star" v-for="star in topRated[index].emptyStars">
+                    </i>
+                  </h4>
+                  <h4>Overview:
+                    <span v-if="film.overview != ''">
+                      {{ film.overview }}
+                    </span>
+                    <span class="no_ov" v-else>Trama non disponibile</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div id="films" v-else-if="films.length != 0">
@@ -170,7 +219,7 @@
 
         <div
           id="no_found"
-          v-else-if="totalResultFilms == 0 && totalResultSeries == 0">
+          v-else-if="totalResultFilms == 0 && totalResultSeries == 0 && searchInputVal != ''">
           <div class="message">
             <p>OOOOOPS! NON TROVO NIENTE! :(</p>
           </div>
