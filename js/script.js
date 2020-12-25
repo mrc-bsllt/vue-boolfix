@@ -14,13 +14,18 @@ var app = new Vue (
       searchInputVal: "",
       hamburgerStatus: false,
       activeClass: false,
-      debounce: null
+      debounce: null,
+      pageFilm: 1,
+      totalPageFilm: null,
+      pageTv: 1,
+      totalPageTv: null
     }, //fine data
 
     methods: {
       searchFilms: function() {
         const self = this;
         const query = this.searchInputVal;
+        const page = this.pageFilm;
         self.films = [];
 
         if (query != "") {
@@ -29,12 +34,14 @@ var app = new Vue (
             params: {
               api_key: "6aec7bf32e62af91512f360891825035",
               query,
+              page,
               language: "it-IT"
             }
           }).then((response) => {
             self.films = response.data.results;
             self.filmsBackup = response.data.results;
             self.totalResultFilms = response.data.total_results;
+            self.totalPageFilm = response.data.total_pages;
 
             for (var i = 0; i < self.films.length; i++) {
               const element = self.films[i];
@@ -73,6 +80,7 @@ var app = new Vue (
 
         const self = this;
         const query = this.searchInputVal;
+        const page = this.pageTv;
         self.tvSeries = [];
 
         if (query != "") {
@@ -81,12 +89,14 @@ var app = new Vue (
               params: {
               api_key: "6aec7bf32e62af91512f360891825035",
               query,
+              page,
               language: "it-IT"
             }
           }).then( (response) => {
             self.tvSeries = response.data.results;
             self.tvSeriesBackup = response.data.results;
             self.totalResultSeries = response.data.total_results;
+            self.totalPageTv = response.data.total_pages;
 
             for(var i = 0; i < self.tvSeries.length; i++) {
               const element = self.tvSeries[i];
@@ -167,6 +177,26 @@ var app = new Vue (
           callback();
           callback2();
         }, 500)
+      }, //fine funzione
+
+      prevPageFilm: function() {
+        this.pageFilm--;
+        this.searchFilms();
+      }, //fine funzione
+
+      nextPageFilm: function() {
+        this.pageFilm++;
+        this.searchFilms();
+      }, //fine funzione
+
+      prevPageTv: function() {
+        this.pageTv--;
+        this.searchTvSeries();
+      }, //fine funzione
+
+      nextPageTv: function() {
+        this.pageTv++;
+        this.searchTvSeries();
       } //fine funzione
 
     }, //fine methods

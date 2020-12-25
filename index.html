@@ -163,6 +163,22 @@
             </div>
           </div>
 
+          <div class="change_page">
+            <button
+              v-if="pageFilm != 1"
+              @click="prevPageFilm()"
+              type="button"
+              name="button">
+              &lt;-- Prev Page
+            </button>
+            <button
+              v-if="pageFilm != totalPageFilm" @click="nextPageFilm()"
+              type="button"
+              name="button">
+              Next Page --&gt;
+            </button>
+          </div>
+
           <!-- visualizzo a schermo le SERIE TV -->
           <h2 v-if="tvSeries.length != 0">Serie TV</h2>
           <div class="flex_contaier">
@@ -207,6 +223,21 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="change_page">
+            <button
+              v-if="pageTv != 1"
+              @click="prevPageTv()"
+              type="button" name="button">
+              &lt;-- Prev Page
+            </button>
+            <button
+              v-if="pageTv != totalPageTv" @click="nextPageTv()"
+              type="button"
+              name="button">
+              Next Page --&gt;
+            </button>
           </div>
 
         </div>
