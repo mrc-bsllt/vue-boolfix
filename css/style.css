@@ -47,9 +47,11 @@ ul:not(#hamburger_list):not(#genres_list) > li {
 }
 .change_page > button {
   margin: 0 20px;
+  padding: 10px;
   background-color: transparent;
   color: #ffffff;
   font-weight: 700;
+  background-color: rgba(204, 204, 204, 0.1);
   border: none;
   text-transform: uppercase;
   cursor: pointer;
