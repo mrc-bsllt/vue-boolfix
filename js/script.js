@@ -12,8 +12,10 @@ var app = new Vue (
       totalResultFilms: -1,
       totalResultSeries: -1,
       searchInputVal: "",
-      hamburgerStatus: false,
-      activeClass: false,
+      activeClass: {
+        hamburger: false,
+        choiceGenre: false,
+      },
       debounce: null,
       pageFilm: 1,
       totalPageFilm: null,
@@ -133,42 +135,22 @@ var app = new Vue (
 
       }, //fine funzione
 
-      activeHamburger: function() {
-        if (this.hamburgerStatus == false) {
-          this.hamburgerStatus = true;
-        } else {
-          this.hamburgerStatus = false;
-        }
+      toggleActiveClass: function(param) {
+        this.activeClass[param] = !this.activeClass[param];
       }, //fine funzione
 
-      toggleActiveClass: function() {
-        if (this.activeClass) {
-          this.activeClass = false;
-        } else {
-          this.activeClass = true;
-        }
-      }, //fine funzione
-
-      filterByGenre: function(index) {
+      filterByGenre: function(index, array, array2) {
         const idChosenGenre = this.genres[index].id;
-        this.films = this.filmsBackup;
-        this.tvSeries = this.tvSeriesBackup;
+        this[array] = this[array2];
 
-        const newArrayFilms = this.films.filter(
+        const newArrayFilms = this[array].filter(
           (element) => {
             return element.genre_ids.includes(idChosenGenre)
           }
         );
-        this.films = newArrayFilms;
+        this[array] = newArrayFilms;
 
-        const newArraySeries = this.tvSeries.filter(
-          (element) => {
-            return element.genre_ids.includes(idChosenGenre)
-          }
-        );
-        this.tvSeries = newArraySeries;
-
-        this.activeClass = false;
+        this.activeClass.choiceGenre = false;
       }, //fine funzione
 
       searchDebounce: function(callback, callback2) {
@@ -179,25 +161,23 @@ var app = new Vue (
         }, 500)
       }, //fine funzione
 
-      prevPageFilm: function() {
-        this.pageFilm--;
+      changePageFilm: function(param) {
+        if(param == "--") {
+          this.pageFilm--;
+        } else {
+          this.pageFilm++;
+        }
         this.searchFilms();
       }, //fine funzione
 
-      nextPageFilm: function() {
-        this.pageFilm++;
-        this.searchFilms();
-      }, //fine funzione
-
-      prevPageTv: function() {
-        this.pageTv--;
+      changePagePageTv: function(param) {
+        if(param == "--") {
+          this.pageTv--;
+        } else {
+          this.pageTv++;
+        }
         this.searchTvSeries();
       }, //fine funzione
-
-      nextPageTv: function() {
-        this.pageTv++;
-        this.searchTvSeries();
-      } //fine funzione
 
     }, //fine methods
 
