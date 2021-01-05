@@ -41,42 +41,22 @@ var app = new Vue (
             }
           }).then((response) => {
             self.films = response.data.results;
-            self.filmsBackup = response.data.results;
+            self.filmsBackup = self.films;
             self.totalResultFilms = response.data.total_results;
             self.totalPageFilm = response.data.total_pages;
 
             for (var i = 0; i < self.films.length; i++) {
+
               const element = self.films[i];
-              element.cast = [];
-              const notFloorNumber = Math.round(element.vote_average)/2;
 
-              element.fullStars = Math.floor(notFloorNumber);
+              self.getRated(element);
+              self.getCast(element, 'movie');
 
-              if ((notFloorNumber - element.fullStars) != 0) {
-                element.halfEmptyStar = 1;
-              } else {
-                element.halfEmptyStar = 0;
-              }
-
-              element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
-
-              axios
-                .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
-                  params: {
-                    api_key: "6aec7bf32e62af91512f360891825035",
-                  }
-                }).then((response) => {
-                  for (var i = 0; i < response.data.cast.length; i++) {
-                    if (element.cast.length < 5) {
-                      element.cast.push(response.data.cast[i].name);
-                    }
-                  }
-                  this.$forceUpdate();
-                });
             }
           });
         }
       }, //fine funzione
+
 
       searchTvSeries: function() {
 
@@ -96,42 +76,56 @@ var app = new Vue (
             }
           }).then( (response) => {
             self.tvSeries = response.data.results;
-            self.tvSeriesBackup = response.data.results;
+            self.tvSeriesBackup = self.tvSeries;
             self.totalResultSeries = response.data.total_results;
             self.totalPageTv = response.data.total_pages;
 
             for(var i = 0; i < self.tvSeries.length; i++) {
+
               const element = self.tvSeries[i];
-              element.cast = [];
-              const notFloorNumber = Math.round(element.vote_average)/2;
 
-              element.fullStars = Math.floor(notFloorNumber);
+              self.getRated(element);
+              self.getCast(element, 'tv');
 
-              if ((notFloorNumber - element.fullStars) != 0) {
-                element.halfEmptyStar = 1;
-              } else {
-                element.halfEmptyStar = 0;
               }
+            });
+        }
 
-              element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
+      }, //fine funzione
 
-              axios
-                .get(`https://api.themoviedb.org/3/tv/${element.id}/credits`, {
-                  params: {
-                    api_key: "6aec7bf32e62af91512f360891825035",
-                  }
-                }).then((response) => {
-                  for (var i = 0; i < response.data.cast.length; i++) {
-                    if (element.cast.length < 5) {
-                      element.cast.push(response.data.cast[i].name);
-                    }
-                  }
-                  this.$forceUpdate();
-                });
+      getRated: function(ref) {
+        const notFloorNumber = Math.round(ref.vote_average)/2;
+
+        ref.fullStars = Math.floor(notFloorNumber);
+
+        if ((notFloorNumber - ref.fullStars) != 0) {
+          ref.halfEmptyStar = 1;
+        } else {
+          ref.halfEmptyStar = 0;
+        }
+
+        ref.emptyStars = 5 - ref.halfEmptyStar - ref.fullStars;
+
+      }, //fine funzione
+
+      getCast: function(ref, type) {
+
+        axios
+          .get(`https://api.themoviedb.org/3/${type}/${ref.id}/credits`, {
+            params: {
+              api_key: "6aec7bf32e62af91512f360891825035",
+            }
+          }).then((response) => {
+
+            ref.cast = [];
+
+            for (var i = 0; i < response.data.cast.length; i++) {
+              if (ref.cast.length < 5) {
+                ref.cast.push(response.data.cast[i].name);
               }
             }
-          )
-        }
+            this.$forceUpdate();
+          });
 
       }, //fine funzione
 
@@ -210,36 +204,15 @@ var app = new Vue (
           self.topRated = response.data.results;
 
           for (var i = 0; i < self.topRated.length; i++) {
+
             const element = self.topRated[i];
-            element.cast = [];
-            const notFloorNumber = Math.round(element.vote_average)/2;
 
-            element.fullStars = Math.floor(notFloorNumber);
+            self.getRated(element);
+            self.getCast(element, 'movie');
 
-            if ((notFloorNumber - element.fullStars) != 0) {
-              element.halfEmptyStar = 1;
-            } else {
-              element.halfEmptyStar = 0;
-            }
-
-            element.emptyStars = 5 - element.halfEmptyStar - element.fullStars;
-
-            axios
-              .get(`https://api.themoviedb.org/3/movie/${element.id}/credits`, {
-                params: {
-                  api_key: "6aec7bf32e62af91512f360891825035",
-                }
-              }).then((response) => {
-                for (var i = 0; i < response.data.cast.length; i++) {
-                  if (element.cast.length < 5) {
-                    element.cast.push(response.data.cast[i].name);
-                  }
-                }
-                self.$forceUpdate();
-              });
           }
 
-        })
+        });
     }
 
 

@@ -144,7 +144,7 @@
                     <span>{{ film.original_title }}</span>
                   </h4>
                   <h4>
-                    Voto:
+                    <span class="rated">Voto:</span>
                     <i class="fas fa-star" v-for="star in films[index].fullStars">
                     </i>
                     <i class="fas fa-star-half-alt" v-for="star in films[index].halfEmptyStar">
@@ -206,7 +206,7 @@
                       </span>
                     </h4>
                   </h4>
-                    Voto:
+                    <span class="rated">Voto:</span>
                     <i class="fas fa-star" v-for="star in tvSeries[index].fullStars">
                     </i>
                     <i class="fas fa-star-half-alt" v-for="star in tvSeries[index].halfEmptyStar">
@@ -268,7 +268,9 @@
         <ul id="genres_list">
           <li
             v-for="(genre, index) in genres"
-            @click="filterByGenre(index, 'films', 'filmsBackup'), filterByGenre(index, 'tvSeries', 'tvSeriesBackup')">
+            @click=
+            "filterByGenre(index, 'films', 'filmsBackup'),
+            filterByGenre(index, 'tvSeries', 'tvSeriesBackup')">
             <a href="#"><em>{{ genre.name }}</em></a>
           </li>
         </ul>
